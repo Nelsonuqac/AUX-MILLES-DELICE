@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aux mille délices</title>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-content">
+        <div class="logo">Aux mille délices</div>
+        
+        <div class="nav-links" id="navLinks">
+          <a href="#" class="nav-link active" data-page="accueil">Accueil</a>
+          <a href="#" class="nav-link" data-page="menu">Menu</a>
+          <a href="#" class="nav-link" data-page="reservation">Réservation</a>
+          <a href="#" class="nav-link" data-page="contact">Contact</a>
+          <a href="#" class="nav-link" data-page="carriere">Carrière</a>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <span class="hamburger"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Accueil -->
+  <div class="page active" id="page-accueil">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Bienvenue aux mille délices</h1>
+        <p class="hero-text">
+          Une expérience culinaire authentique dans un cadre chaleureux et accueillant. 
+          Découvrez la richesse et les saveurs de la cuisine africaine traditionnelle.
+        </p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary" data-page="menu">Découvrir notre menu</button>
+          <button class="btn btn-secondary" data-page="reservation">Réserver une table</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notre Histoire -->
+    <section class="section">
+      <div class="container">
+        <div class="grid-2">
+          <div>
+            <h2 class="section-title">Notre Histoire</h2>
+            <p class="text-content">
+              Depuis 2010, Aux mille délices accueille les amateurs de cuisine africaine authentique dans un 
+              cadre chaleureux et convivial. Notre passion pour les saveurs traditionnelles et notre engagement 
+              envers la qualité font de chaque visite une expérience mémorable.
+            </p>
+            <p class="text-content">
+              Nous sommes fiers de partager la richesse culinaire du continent africain, en utilisant des 
+              ingrédients frais et des recettes transmises de génération en génération.
+            </p>
+          </div>
+          <div>
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80" 
+                 alt="Restaurant" class="rounded-img">
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Page Menu -->
+  <!-- Page Menu - VERSION CORRIGÉE -->
+<div class="page" id="page-menu">
+  <section class="section bg-light">
+    <div class="container">
+      <div class="text-center">
+        <h1 class="page-title">Notre Menu</h1>
+        <p class="page-subtitle">
+          Une carte authentique qui célèbre la diversité culinaire africaine, mettant à l'honneur 
+          les saveurs traditionnelles et les épices d'Afrique.
+        </p>
+      </div>
+
+      <div class="menu-hero">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&q=80" 
+             alt="Plats africains">
+      </div>
+
+      <!-- ENTRÉES -->
+      <h2 class="section-title">Entrées</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&q=80" 
+               alt="Pastels de Poisson">
+          <div class="menu-item-content">
+            <div class="menu-item-header">
+              <h3>Pastels de Poisson</h3>
+              <span class="price">12€</span>
+            </div>
+            <p>Chaussons frits farcis au poisson, oignons et épices sénégalaises</p>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80" 
+               alt="Salade de Quinoa">
+          <div class="menu-item-content">
+            <div class="menu-item-header">
+              <h3>Salade de Quinoa aux Légumes</h3>
+              <div>
+                <span class="price">10€</span>
+                <span class="badge">Végétarien</span>
+              </div>
+            </div>
+            <p>Quinoa, tomates, concombres, avocat et vinaigrette aux herbes</p>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&q=80" 
+               alt="Crevettes Grillées">
+          <div class="menu-item-content">
+            <div class="menu-item-header">
+              <h3>Crevettes Grillées</h3>
+              <span class="price">16€</span>
+            </div>
+            <p>Crevettes marinées aux épices africaines, servies avec du riz jollof</p>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=800&q=80" 
+               alt="Soupe de Courge">
+          <div class="menu-item-content">
+            <div class="menu-item-header">
+              <h3>Soupe de Courge</h3>
+              <div>
+                <span class="price">8€</span>
+                <span class="badge">Végétarien</span>
+              </div>
+            </div>
+            <p>Soupe crémeuse de courge butternut aux épices douces</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLATS PRINCIPAUX -->
+      <h2 class="section-title">Plats Principaux</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&q=80" 
+               alt="Thiéboudienne">
+          <div class="menu-item-content">
+            <div class="menu-item-header">
+              <h3>Thiéboudienne</h3>
+              <span class="price">22€</span>
+            </div>
+            <p>Riz au poisson, légumes variés et sauce tomate épicée</p>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=800&q=80" 
+               alt="Yassa Poulet">
+          <div class="menu-item-content">
+            <div class="menu-item-header">
+              <h3>Yassa Poulet</h3>
+              <span class="price">20€</span>
+            </div>
+            <p>Poulet mariné aux oignons et citron, riz parfumé</p>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80" 
+               alt="Mafé d'Agneau">
+          <div class="menu-item-content">
+            <div class="menu-item-header">
+              <h3>Mafé d'Agneau</h3>
+              <span class="price">24€</span>
+            </div>
+            <p>Ragoût d'agneau à la pâte d'arachide, légumes et riz</p>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80" 
+               alt="Thiéré Végétarien">
+          <div class="menu-item-content">
+            <div class="menu-item-header">
+              <h3>Thiéré Végétarien</h3>
+              <div>
+                <span class="price">18€</span>
+                <span class="badge">Végétarien</span>
+              </div>
+            </div>
+            <p>Couscous de mil aux légumes de saison et sauce arachide</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESSERTS -->
+      <h2 class="section-title">Desserts</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1587241321921-91a834d82380?w=800&q=80" 
+               alt="Thiakry">
+          <div class="menu-item-content">
+            <div class="menu-item-header">
+              <h3>Thiakry</h3>
+              <div>
+                <span class="price">8€</span>
+                <span class="badge">Végétarien</span>
+              </div>
+            </div>
+            <p>Couscous sucré au lait, raisins secs et noix de coco</p>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=800&q=80" 
+               alt="Beignets de Banane">
+          <div class="menu-item-content">
+            <div class="menu-item-header">
+              <h3>Beignets de Banane</h3>
+              <div>
+                <span class="price">7€</span>
+                <span class="badge">Végétarien</span>
+              </div>
+            </div>
+            <p>Beignets dorés à la banane plantain, miel et cannelle</p>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80" 
+               alt="Mousse au Chocolat Baobab">
+          <div class="menu-item-content">
+            <div class="menu-item-header">
+              <h3>Mousse au Chocolat Baobab</h3>
+              <div>
+                <span class="price">9€</span>
+                <span class="badge">Végétarien</span>
+              </div>
+            </div>
+            <p>Mousse au chocolat noir parfumée au fruit de baobab</p>
+          </div>
+        </div>
+<!-- Page Menu-->
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1587241321921-91a834d82380?w=800&q=80" 
+               alt="Tarte à la Mangue">
+          <div class="menu-item-content">
+            <div class="menu-item-header">
+              <h3>Tarte à la Mangue</h3>
+              <div>
+                <span class="price">10€</span>
+                <span class="badge">Végétarien</span>
+              </div>
+            </div>
+            <p>Tarte aux mangues fraîches et crème à la vanille</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MENU DÉCOUVERTE -->
+      <div class="menu-decouverte">
+        <h2 class="section-title text-center">Menu Découverte d'Afrique</h2>
+        <p class="menu-decouverte-text">
+          Découvrez notre menu dégustation 5 services, un voyage culinaire à travers l'Afrique de l'Ouest, 
+          accompagné de boissons traditionnelles africaines.
+        </p>
+        <div class="menu-decouverte-price">
+          <span class="price-large">45€</span> par personne
+          <span class="price-note">(accord boissons africaines : +15€)</span>
+        </div>
+      </div>
+      
+    </div> <!-- Fermeture de container -->
+  </section>
+</div> <!-- Fermeture de page-menu -->
+  
+  <!-- Page Réservation -->
+  <div class="page" id="page-reservation">
+    <section class="section bg-light">
+      <div class="container">
+        <div class="text-center">
+          <h1 class="page-title">Réservation</h1>
+          <p class="page-subtitle">
+            Réservez votre table dès maintenant pour vivre une expérience culinaire inoubliable 
+            dans notre restaurant.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="col-2">
+            <div class="card">
+              <h2 class="card-title">Formulaire de réservation</h2>
+              <form id="reservationForm" class="form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Nom complet *</label>
+                    <input type="text" placeholder="Votre nom" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" placeholder="votre@email.com" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Téléphone</label>
+                    <input type="tel" placeholder="+33 1 23 45 67 89">
+                  </div>
+                  <div class="form-group">
+                    <label>Nombre de convives *</label>
+                    <select required>
+                      <option value="">Sélectionner</option>
+                      <option value="1">1 personne</option>
+                      <option value="2">2 personnes</option>
+                      <option value="3">3 personnes</option>
+                      <option value="4">4 personnes</option>
+                      <option value="5">5 personnes</option>
+                      <option value="6">6 personnes</option>
+                      <option value="7">7 personnes</option>
+                      <option value="8">8 personnes</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Date de réservation *</label>
+                    <input type="date" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Heure *</label>
+                    <select required>
+                      <option value="">Sélectionner l'heure</option>
+                      <option value="12:00">12:00</option>
+                      <option value="12:30">12:30</option>
+                      <option value="13:00">13:00</option>
+                      <option value="13:30">13:30</option>
+                      <option value="14:00">14:00</option>
+                      <option value="19:00">19:00</option>
+                      <option value="19:30">19:30</option>
+                      <option value="20:00">20:00</option>
+                      <option value="20:30">20:30</option>
+                      <option value="21:00">21:00</option>
+                      <option value="21:30">21:30</option>
+                      <option value="22:00">22:00</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Message ou demandes spéciales</label>
+                  <textarea rows="4" placeholder="Anniversaire, allergie alimentaire, préférences..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Confirmer la réservation</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-1">
+            <div class="card info-card">
+              <div class="info-header">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <h3>Horaires d'ouverture</h3>
+              </div>
+              <div class="info-content">
+                <div class="info-row">
+                  <span>Lundi - Vendredi</span>
+                  <div>
+                    <div>12h - 14h30</div>
+                    <div>19h - 22h30</div>
+                  </div>
+                </div>
+                <div class="info-row">
+                  <span>Samedi</span>
+                  <span>19h - 23h</span>
+                </div>
+                <div class="info-row">
+                  <span>Dimanche</span>
+                  <span class="closed">Fermé</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card cta-card">
+              <h3>Réservation express</h3>
+              <p>Appelez-nous directement pour une réservation immédiate</p>
+              <a href="tel:+33123456789" class="phone-number">01 23 45 67 89</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Page Contact -->
+  <div class="page" id="page-contact">
+    <section class="section bg-light">
+      <div class="container">
+        <div class="text-center">
+          <h1 class="page-title">Contact</h1>
+          <p class="page-subtitle">
+            Une question, une suggestion ou envie de nous rendre visite ? N'hésitez pas à nous contacter, 
+            nous serons ravis de vous répondre.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h2 class="card-title">Envoyez-nous un message</h2>
+            <form id="contactForm" class="form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Nom complet</label>
+                  <input type="text" placeholder="Votre nom" required>
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" placeholder="votre@email.com" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Sujet</label>
+                <input type="text" placeholder="Objet de votre message" required>
+              </div>
+
+              <div class="form-group">
+                <label>Message</label>
+                <textarea rows="6" placeholder="Votre message..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Envoyer le message</button>
+            </form>
+          </div>
+
+          <div>
+            <div class="card">
+              <h2 class="card-title">Nos coordonnées</h2>
+              <div class="contact-info">
+                <div class="contact-item">
+                  <div class="contact-icon">📍</div>
+                  <div>
+                    <h4>Adresse</h4>
+                    <p>123 Rue de l'Afrique<br>75018 Paris, France</p>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-icon">📞</div>
+                  <div>
+                    <h4>Téléphone</h4>
+                    <p>+33 1 23 45 67 89</p>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-icon">✉️</div>
+                  <div>
+                    <h4>Email</h4>
+                    <p>contact@auxmilledelices.fr</p>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-icon">🕐</div>
+                  <div>
+                    <h4>Horaires</h4>
+                    <p>Lun - Ven: 12h-14h30, 19h-22h30<br>
+                    Samedi: 19h-23h<br>
+                    Dimanche: Fermé</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card map-card">
+              <h3>Nous trouver</h3>
+              <div class="map-placeholder">
+                <div class="map-content">
+                  <p>📍</p>
+                  <p>Carte Google Maps</p>
+                  <p>123 Rue de l'Afrique, 75018 Paris</p>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-block">Voir dans Google Maps</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Page Carrière -->
+  <div class="page" id="page-carriere">
+    <section class="section bg-light">
+      <div class="container">
+        <div class="text-center">
+          <h1 class="page-title">Carrière</h1>
+          <p class="page-subtitle">
+            Rejoignez l'équipe d'Aux mille délices et participez à l'aventure d'un restaurant qui 
+            place la culture africaine et l'hospitalité au cœur de son quotidien.
+          </p>
+        </div>
+
+        <div class="career-hero">
+          <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1600&q=80" 
+               alt="Équipe de cuisine">
+        </div>
+
+        <h2 class="section-title text-center">Pourquoi nous rejoindre ?</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">👨‍🍳</div>
+            <h3>Apprentissage Culturel</h3>
+            <p>Apprenez les techniques culinaires africaines traditionnelles avec nos chefs expérimentés</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3>Famille Africaine</h3>
+            <p>Rejoignez une famille multiculturelle unie par la passion de la cuisine africaine</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>Évolution</h3>
+            <p>Bénéficiez d'opportunités d'évolution dans un restaurant en constante croissance</p>
+          </div>
+        </div>
+
+        <h2 class="section-title">Nos offres d'emploi</h2>
+        <div class="jobs-list">
+          <div class="job-card">
+            <div class="job-header">
+              <div>
+                <h3>Serveur/Serveuse</h3>
+                <div class="job-meta">
+                  <span>📍 Paris 1er</span>
+                  <span>🕐 CDI</span>
+                  <span class="job-salary">1800-2200€</span>
+                </div>
+              </div>
+            </div>
+            <p class="job-description">
+              Nous recherchons un(e) serveur(se) pour partager l'hospitalité africaine avec nos clients. 
+              Vous serez ambassadeur de notre culture culinaire.
+            </p>
+            <div class="job-profile">
+              <h4>Profil recherché :</h4>
+              <ul>
+                <li>• Passion pour la gastronomie et la culture africaine</li>
+                <li>• Excellent sens du service client</li>
+                <li>• Esprit d'équipe et dynamisme</li>
+                <li>• Expérience souhaitée mais débutants motivés acceptés</li>
+              </ul>
+            </div>
+            <button class="btn btn-primary btn-apply" data-job="Serveur/Serveuse">Postuler à cette offre</button> 
+          </div>
+
+          <div class="job-card">
+            <div class="job-header">
+              <div>
+                <h3>Commis de Cuisine</h3>
+                <div class="job-meta">
+                  <span>📍 Paris 1er</span>
+                  <span>🕐 CDI</span>
+                  <span class="job-salary">1600-1900€</span>
+                </div>
+              </div>
+            </div>
+            <p class="job-description">
+              Rejoignez notre cuisine et découvrez les secrets de la gastronomie africaine. 
+              Formation aux techniques traditionnelles assurée.
+            </p>
+            <div class="job-profile">
+              <h4>Profil recherché :</h4>
+              <ul>
+                <li>• Passion pour la gastronomie et la culture africaine</li>
+                <li>• Excellent sens du service client</li>
+                <li>• Esprit d'équipe et dynamisme</li>
+                <li>• Expérience souhaitée mais débutants motivés acceptés</li>
+              </ul>
+            </div>
+             <button class="btn btn-primary btn-apply" data-job="Commis de Cuisine">Postuler à cette offre</button> 
+          </div>
+        </div>
+        <div class="job-card">
+  <div class="job-header">
+    <div>
+      <h3>Chef de Partie</h3>
+      <div class="job-meta">
+        <span>📍 Paris 1er</span>
+        <span>🕐 3-5 ans</span>
+        <span class="job-salary">2500-3000€</span>
+      </div>
+    </div>
+  </div>
+  <p class="job-description">
+    Nous cherchons un(e) chef de partie maîtrisant la cuisine africaine pour superviser notre brigade. 
+    Excellence culinaire et respect des traditions.
+  </p>
+  <div class="job-profile">
+    <h4>Profil recherché :</h4>
+    <ul>
+      <li>• 3 ans d'expérience en cuisine africaine</li>
+      <li>• Maîtrise des épices et techniques africaines</li>
+      <li>• Leadership bienveillant</li>
+      <li>• Créativité respectueuse des traditions</li>
+      <li>• Gestion du stress</li>
+    </ul>
+  </div>
+  <button class="btn btn-primary btn-apply" data-job="Chef de Partie">Postuler pour ce poste</button>
+</div>
+
+<!-- Responsable de Salle -->
+<div class="job-card">
+  <div class="job-header">
+    <div>
+      <h3>Responsable de Salle</h3>
+      <div class="job-meta">
+        <span>📍 Paris 1er</span>
+        <span>🕐 5+ ans</span>
+        <span class="job-salary">2800-3500€</span>
+      </div>
+    </div>
+  </div>
+  <p class="job-description">
+    Dirigez notre équipe avec l'esprit de famille africain. Transmettez les valeurs d'hospitalité 
+    et de partage à nos équipes.
+  </p>
+  <div class="job-profile">
+    <h4>Profil recherché :</h4>
+    <ul>
+      <li>• 5 ans d'expérience en restauration</li>
+      <li>• Management bienveillant à l'africaine</li>
+      <li>• Connaissance des boissons africaines</li>
+      <li>• Multilinguisme apprécié</li>
+      <li>• Leadership naturel et chaleureux</li>
+    </ul>
+  </div>
+  <button class="btn btn-primary btn-apply" data-job="Responsable de Salle">Postuler pour ce poste</button>
+</div>
+
+        <div class="cta-banner">
+          <h2>Candidature spontanée</h2>
+          <p>
+            Vous ne trouvez pas l'offre qui vous correspond ? Envoyez-nous votre candidature spontanée, 
+            nous sommes toujours à la recherche de talents passionnés !
+          </p>
+          <button class="btn btn-white" data-page="contact">Nous contacter</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>Aux mille délices</h3>
+          <p>Restaurant de cuisine africaine authentique à Paris depuis 2010.</p>
+        </div>
+
+        <div>
+          <h4>Navigation</h4>
+          <a href="#" data-page="accueil">Accueil</a>
+          <a href="#" data-page="menu">Menu</a>
+          <a href="#" data-page="reservation">Réservation</a>
+          <a href="#" data-page="contact">Contact</a>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <p>123 Rue de l'Afrique<br>75018 Paris, France<br>+33 1 23 45 67 89<br>contact@auxmilledelices.fr</p>
+        </div>
+
+        <div>
+          <h4>Horaires</h4>
+          <p>Lun - Ven: 12h-14h30<br>19h-22h30<br>Samedi: 19h-23h<br>Dimanche: Fermé</p>
+        </div>
+      </div>
+ <div class="footer-bottom">
+        <p>© 2025 Aux mille délices. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
