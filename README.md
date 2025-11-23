@@ -240,10 +240,10 @@ Aucun problème majeur identifié. Le site fonctionne correctement sur tous les 
 
 ## 👥 Auteur(s)
 
-NJIKAM YOGWA NELSON
-LAURENT NGWE
-EDDY BRIAN 
-ADEGOKE RAJI BILHAL
+NJIKAM YOGWA NELSON  
+LAURENT NGWE  
+EDDY BRIAN   
+ADEGOKE RAJI BILHAL  
 DIABATE VAMOUSSA 
 
 Session : Automne 2025  
