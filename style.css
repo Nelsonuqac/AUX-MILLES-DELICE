@@ -97,6 +97,49 @@ body {
   bottom: -8px;
 }
 
+
+
+
+
+/* Animation fade+slide pour les items */
+.menu-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s ease;
+}
+.menu-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation du titre */
+.page-title {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: 0.8s ease;
+}
+.page-title.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Image menu animée / léger zoom infini */
+.menu-hero img {
+    width: 100%;
+    display: block;
+    animation: zoomSlow 10s ease-in-out alternate infinite;
+}
+
+@keyframes zoomSlow {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+}
+
+
+
+
+
+
 /* Pages */
 .page {
   display: none;
@@ -985,4 +1028,5 @@ body {
   .modal-content .form {
     padding: 20px;
   }
+
 }
