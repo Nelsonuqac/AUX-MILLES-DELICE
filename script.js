@@ -114,3 +114,24 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(card);
   });
 });
+
+
+
+// Sélection des éléments
+const navLinks = document.querySelectorAll(".nav-link");
+const navContainer = document.getElementById("navLinks");
+const toggleBtn = document.getElementById("mobileMenuBtn");
+
+// === Animation click navigation (surlignage + changement de page) ===
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.forEach(l => l.classList.remove("active"));
+    link.classList.add("active");
+  });
+});
+
+// === Menu burger animé (mobile) ===
+toggleBtn.addEventListener("click", () => {
+  toggleBtn.classList.toggle("active");
+  navContainer.classList.toggle("show");
+});
