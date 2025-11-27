@@ -1030,3 +1030,110 @@ body {
   }
 
 }
+
+
+/* ==== ANIMATION MENU & HOVER ==== */
+.nav-links .nav-link {
+  position: relative;
+  font-weight: 600;
+  padding: 10px 15px;
+  transition: color .3s ease;       /* Transition douce au survol */
+}
+
+/* Barre animée sous les liens */
+.nav-links .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) scaleX(0);
+  width: 70%;
+  height: 3px;
+  background: #ff4d00;
+  border-radius: 2px;
+  transition: transform .3s ease;
+}
+
+.nav-links .nav-link:hover::after,
+.nav-links .nav-link.active::after {
+  transform: translateX(-50%) scaleX(1); /* Animation underline */
+}
+
+.nav-links .nav-link:hover {
+  color: #ff4d00;
+}
+
+/* ==== ANIMATION OUVERTURE DU MENU MOBILE ==== */
+.mobile-menu-btn {
+  width: 35px;
+  height: 35px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: none;
+}
+
+.hamburger, 
+.hamburger::before, 
+.hamburger::after {
+  content: "";
+  background: #333;
+  height: 3px;
+  width: 30px;
+  border-radius: 3px;
+  display: block;
+  transition: .4s;
+}
+
+.hamburger::before {
+  margin-top: 6px;
+}
+
+.hamburger::after {
+  margin-top: 6px;
+}
+
+/* État animé menu ouvert (X) */
+.mobile-menu-btn.active .hamburger {
+  transform: rotate(45deg);
+}
+
+.mobile-menu-btn.active .hamburger::before {
+  transform: rotate(90deg) translateX(6px);
+}
+
+.mobile-menu-btn.active .hamburger::after {
+  opacity: 0;
+}
+
+/* AFFICHAGE MOBILE */
+@media(max-width: 850px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    width: 100%;
+    background: white;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+    box-shadow: 0 8px 15px rgba(0,0,0,.15);
+    animation: fadeDown .5s ease forwards;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+}
+
+/* Animation apparition */
+@keyframes fadeDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
