@@ -1,3 +1,7 @@
+/* ====================================
+   PARTIE : BASE + NAVIGATION + HERO
+   ==================================== */
+
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +12,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   color: #333;
+  overflow-x: hidden;
 }
 
 .container {
@@ -16,13 +21,21 @@ body {
   padding: 0 20px;
 }
 
-/* Navigation */
+/* ==========================================
+   NAVIGATION AVEC EFFETS HOVER
+   ========================================== */
 .navbar {
   background: white;
   border-bottom: 1px solid #e5e7eb;
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.navbar:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .nav-content {
@@ -36,12 +49,19 @@ body {
   font-size: 1.25rem;
   font-weight: bold;
   color: #111;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  color: #ea580c;
 }
 
 .logo a {
   text-decoration: none;
-  color: #111;  
+  color: inherit;
 }
+
 .nav-links {
   display: flex;
   gap: 32px;
@@ -52,15 +72,36 @@ body {
   color: #6b7280;
   font-size: 0.875rem;
   font-weight: 500;
-  padding-bottom: 4px;
+  padding: 8px 12px;
   border-bottom: 2px solid transparent;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.nav-link:hover,
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #ea580c;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ea580c;
+  transform: translateY(-2px);
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  width: 100%;
+}
+
 .nav-link.active {
   color: #ea580c;
-  border-bottom-color: #ea580c;
 }
 
 .mobile-menu-btn {
@@ -69,6 +110,11 @@ body {
   border: none;
   cursor: pointer;
   padding: 8px;
+  transition: transform 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  transform: scale(1.1);
 }
 
 .hamburger {
@@ -77,6 +123,7 @@ body {
   height: 2px;
   background: #111;
   position: relative;
+  transition: all 0.3s ease;
 }
 
 .hamburger::before,
@@ -87,6 +134,7 @@ body {
   height: 2px;
   background: #111;
   left: 0;
+  transition: all 0.3s ease;
 }
 
 .hamburger::before {
@@ -97,59 +145,50 @@ body {
   bottom: -8px;
 }
 
-
-
-
-
-/* Animation fade+slide pour les items */
-.menu-item {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: 0.8s ease;
-}
-.menu-item.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Animation du titre */
-.page-title {
-    opacity: 0;
-    transform: scale(0.9);
-    transition: 0.8s ease;
-}
-.page-title.show {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* Image menu animée / léger zoom infini */
-.menu-hero img {
-    width: 100%;
-    display: block;
-    animation: zoomSlow 10s ease-in-out alternate infinite;
-}
-
-@keyframes zoomSlow {
-    from { transform: scale(1); }
-    to { transform: scale(1.08); }
-}
-
-
-
-
-
-
-/* Pages */
+/* ==========================================
+   TRANSITIONS ENTRE PAGES (EFFET FADE + SLIDE)
+   ========================================== */
 .page {
   display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
 }
 
 .page.active {
   display: block;
 }
 
-/* Hero Section */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation de sortie (optionnelle) */
+.page.fade-out {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* ==========================================
+   HERO SECTION AVEC ANIMATIONS
+   ========================================== */
 .hero {
   position: relative;
   height: 600px;
@@ -160,6 +199,24 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.4), rgba(234, 88, 12, 0.2));
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .hero-overlay {
@@ -173,6 +230,7 @@ body {
   text-align: center;
   padding: 0 20px;
   max-width: 900px;
+  animation: fadeInUp 1s ease;
 }
 
 .hero-title {
@@ -180,7 +238,8 @@ body {
   font-weight: bold;
   color: white;
   margin-bottom: 24px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1s ease 0.2s backwards;
 }
 
 .hero-text {
@@ -188,7 +247,8 @@ body {
   color: white;
   margin-bottom: 32px;
   line-height: 1.8;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1s ease 0.4s backwards;
 }
 
 .hero-buttons {
@@ -196,54 +256,96 @@ body {
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
+  animation: fadeInUp 1s ease 0.6s backwards;
 }
 
-/* Buttons */
+/* ==========================================
+   BOUTONS AVEC EFFETS HOVER ÉLÉGANTS
+   ========================================== */
 .btn {
-  padding: 12px 32px;
+  padding: 14px 36px;
   border-radius: 8px;
   font-weight: 500;
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: translateY(-1px) scale(1.02);
 }
 
 .btn-primary {
   background: #ea580c;
   color: white;
+  box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
 }
 
 .btn-primary:hover {
   background: #c2410c;
+  box-shadow: 0 8px 25px rgba(234, 88, 12, 0.6);
 }
 
 .btn-secondary {
   background: white;
   color: #111;
-  border: 1px solid #d1d5db;
+  border: 2px solid white;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
 
 .btn-secondary:hover {
-  background: #f3f4f6;
+  background: rgba(255, 255, 255, 0.9);
+  border-color: #ea580c;
+  color: #ea580c;
 }
 
 .btn-white {
   background: white;
   color: #ea580c;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
 }
 
 .btn-white:hover {
   background: #f9fafb;
+  transform: translateY(-3px) scale(1.05);
 }
 
 .btn-block {
   width: 100%;
 }
 
-/* Sections */
+/* ==========================================
+   SECTIONS DE BASE
+   ========================================== */
 .section {
   padding: 80px 0;
+  animation: fadeInUp 0.8s ease;
 }
 
 .bg-light {
@@ -255,6 +357,24 @@ body {
   font-weight: bold;
   margin-bottom: 32px;
   color: #111;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: #ea580c;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.section:hover .section-title::after {
+  width: 100%;
 }
 
 .page-title {
@@ -262,6 +382,7 @@ body {
   font-weight: bold;
   margin-bottom: 16px;
   color: #111;
+  animation: fadeInUp 0.6s ease;
 }
 
 .page-subtitle {
@@ -269,6 +390,7 @@ body {
   color: #6b7280;
   max-width: 800px;
   margin: 0 auto 48px;
+  animation: fadeInUp 0.8s ease;
 }
 
 .text-center {
@@ -279,9 +401,16 @@ body {
   color: #4b5563;
   margin-bottom: 16px;
   line-height: 1.8;
+  transition: color 0.3s ease;
 }
 
-/* Grid Layouts */
+.text-content:hover {
+  color: #111;
+}
+
+/* ==========================================
+   GRILLES RESPONSIVE
+   ========================================== */
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -309,26 +438,49 @@ body {
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Menu Page */
+.rounded-img:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+/* ====================================
+   PARTIE : MENU + CARTES + FOOTER
+   ==================================== */
+
+/* ==========================================
+   PAGE MENU AVEC EFFETS HOVER
+   ========================================== */
 .menu-hero {
   margin-bottom: 64px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-hero:hover {
+  transform: scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
 }
 
 .menu-hero img {
   width: 100%;
   height: 400px;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.menu-hero:hover img {
+  transform: scale(1.1);
 }
 
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
+  margin-bottom: 64px;
 }
 
 .menu-item {
@@ -336,21 +488,48 @@ body {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.menu-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
 .menu-item:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(234, 88, 12, 0.3);
+}
+
+.menu-item:hover::before {
+  opacity: 1;
 }
 
 .menu-item img {
   width: 100%;
   height: 250px;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.menu-item:hover img {
+  transform: scale(1.15);
 }
 
 .menu-item-content {
   padding: 24px;
+  position: relative;
+  z-index: 2;
 }
 
 .menu-item-header {
@@ -364,17 +543,32 @@ body {
   font-size: 1.25rem;
   font-weight: bold;
   color: #111;
+  transition: color 0.3s ease;
+}
+
+.menu-item:hover h3 {
+  color: #ea580c;
 }
 
 .menu-item-content p {
   color: #6b7280;
   line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+.menu-item:hover p {
+  color: #4b5563;
 }
 
 .price {
   font-size: 1.25rem;
   font-weight: bold;
   color: #ea580c;
+  transition: transform 0.3s ease;
+}
+
+.menu-item:hover .price {
+  transform: scale(1.1);
 }
 
 .badge {
@@ -385,15 +579,98 @@ body {
   font-size: 0.75rem;
   font-weight: 500;
   margin-left: 8px;
+  transition: all 0.3s ease;
 }
 
-/* Cards */
+.menu-item:hover .badge {
+  background: #ea580c;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Menu Découverte */
+.menu-decouverte {
+  background: linear-gradient(135deg, #fef3c7, #fed7aa);
+  border-radius: 16px;
+  padding: 48px;
+  margin-top: 64px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(234, 88, 12, 0.2);
+  transition: all 0.4s ease;
+}
+
+.menu-decouverte:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(234, 88, 12, 0.3);
+}
+
+.menu-decouverte-text {
+  color: #4b5563;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto 32px;
+}
+
+.menu-decouverte-price {
+  font-size: 1.25rem;
+  color: #111;
+  font-weight: 500;
+}
+
+.price-large {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ea580c;
+  display: inline-block;
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+}
+
+.menu-decouverte:hover .price-large {
+  transform: scale(1.1);
+}
+
+.price-note {
+  display: block;
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* ==========================================
+   CARTES AVEC EFFETS HOVER
+   ========================================== */
 .card {
   background: white;
   border-radius: 12px;
   padding: 32px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin-bottom: 24px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ea580c, transparent);
+  transition: left 0.5s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover::before {
+  left: 100%;
 }
 
 .card-title {
@@ -401,9 +678,16 @@ body {
   font-weight: bold;
   color: #111;
   margin-bottom: 24px;
+  transition: color 0.3s ease;
 }
 
-/* Forms */
+.card:hover .card-title {
+  color: #ea580c;
+}
+
+/* ==========================================
+   FORMULAIRES AVEC EFFETS INTERACTIFS
+   ========================================== */
 .form {
   display: flex;
   flex-direction: column;
@@ -426,16 +710,30 @@ body {
   font-weight: 500;
   color: #374151;
   margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.form-group:hover label {
+  color: #ea580c;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   padding: 12px 16px;
-  border: 1px solid #d1d5db;
+  border: 2px solid #d1d5db;
   border-radius: 8px;
   font-size: 1rem;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+  border-color: #ea580c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.1);
 }
 
 .form-group input:focus,
@@ -443,7 +741,8 @@ body {
 .form-group textarea:focus {
   outline: none;
   border-color: #ea580c;
-  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
+  box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.1);
+  transform: scale(1.02);
 }
 
 .form-group textarea {
@@ -454,6 +753,11 @@ body {
 /* Info Cards */
 .info-card {
   background: white;
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  background: linear-gradient(135deg, #fff, #fef3c7);
 }
 
 .info-header {
@@ -473,6 +777,11 @@ body {
   width: 24px;
   height: 24px;
   color: #ea580c;
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover .icon {
+  transform: rotate(360deg) scale(1.2);
 }
 
 .info-content {
@@ -486,15 +795,30 @@ body {
   display: flex;
   justify-content: space-between;
   font-size: 0.875rem;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.info-row:hover {
+  background: rgba(234, 88, 12, 0.05);
+  padding-left: 10px;
 }
 
 .closed {
   color: #dc2626;
+  font-weight: 600;
 }
 
 .cta-card {
   background: linear-gradient(135deg, #ea580c, #c2410c);
   color: white;
+  transition: all 0.3s ease;
+}
+
+.cta-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(234, 88, 12, 0.4);
 }
 
 .cta-card h3 {
@@ -513,9 +837,18 @@ body {
   font-weight: bold;
   color: white;
   text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
 }
 
-/* Contact Page */
+.phone-number:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* ==========================================
+   PAGE CONTACT
+   ========================================== */
 .contact-info {
   display: flex;
   flex-direction: column;
@@ -525,11 +858,24 @@ body {
 .contact-item {
   display: flex;
   gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+  background: rgba(234, 88, 12, 0.05);
+  transform: translateX(10px);
 }
 
 .contact-icon {
   font-size: 1.5rem;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+  transform: scale(1.3) rotate(10deg);
 }
 
 .contact-item h4 {
@@ -542,6 +888,14 @@ body {
   color: #6b7280;
   font-size: 0.875rem;
   line-height: 1.6;
+}
+
+.map-card {
+  transition: all 0.3s ease;
+}
+
+.map-card:hover {
+  transform: translateY(-5px);
 }
 
 .map-card h3 {
@@ -558,6 +912,12 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.map-placeholder:hover {
+  background: #d1d5db;
+  transform: scale(1.02);
 }
 
 .map-content {
@@ -568,6 +928,16 @@ body {
 .map-content p:first-child {
   font-size: 3rem;
   margin-bottom: 8px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .map-content p:nth-child(2) {
@@ -579,18 +949,31 @@ body {
   font-size: 0.875rem;
 }
 
-/* Career Page */
+/* ==========================================
+   PAGE CARRIÈRE
+   ========================================== */
 .career-hero {
   margin-bottom: 64px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.career-hero:hover {
+  transform: scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
 }
 
 .career-hero img {
   width: 100%;
   height: 400px;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.career-hero:hover img {
+  transform: scale(1.1);
 }
 
 .features-grid {
@@ -606,11 +989,22 @@ body {
   padding: 32px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(234, 88, 12, 0.2);
 }
 
 .feature-icon {
   font-size: 3rem;
   margin-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.2) rotate(360deg);
 }
 
 .feature-card h3 {
@@ -618,6 +1012,11 @@ body {
   font-weight: bold;
   color: #111;
   margin-bottom: 12px;
+  transition: color 0.3s ease;
+}
+
+.feature-card:hover h3 {
+  color: #ea580c;
 }
 
 .feature-card p {
@@ -637,15 +1036,14 @@ body {
   border-radius: 12px;
   padding: 32px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
 }
 
 .job-card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-.job-header {
-  margin-bottom: 16px;
+  transform: translateX(10px);
+  box-shadow: 0 12px 30px rgba(234, 88, 12, 0.2);
+  border-left-color: #ea580c;
 }
 
 .job-header h3 {
@@ -653,6 +1051,11 @@ body {
   font-weight: bold;
   color: #111;
   margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.job-card:hover h3 {
+  color: #ea580c;
 }
 
 .job-meta {
@@ -669,12 +1072,19 @@ body {
   padding: 4px 12px;
   border-radius: 16px;
   font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.job-card:hover .job-salary {
+  background: #ea580c;
+  color: white;
+  transform: scale(1.05);
 }
 
 .job-description {
   color: #4b5563;
   line-height: 1.8;
-  margin-bottom: 24px;
+  margin: 16px 0 24px;
 }
 
 .job-profile {
@@ -682,6 +1092,11 @@ body {
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+.job-card:hover .job-profile {
+  background: rgba(234, 88, 12, 0.05);
 }
 
 .job-profile h4 {
@@ -697,6 +1112,22 @@ body {
   line-height: 1.8;
 }
 
+.btn-apply {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-apply::after {
+  content: '→';
+  position: absolute;
+  right: 20px;
+  transition: transform 0.3s ease;
+}
+
+.btn-apply:hover::after {
+  transform: translateX(5px);
+}
+
 .cta-banner {
   background: linear-gradient(135deg, #ea580c, #c2410c);
   border-radius: 16px;
@@ -704,6 +1135,12 @@ body {
   text-align: center;
   color: white;
   box-shadow: 0 20px 50px rgba(234, 88, 12, 0.3);
+  transition: all 0.3s ease;
+}
+
+.cta-banner:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(234, 88, 12, 0.4);
 }
 
 .cta-banner h2 {
@@ -720,7 +1157,9 @@ body {
   margin-right: auto;
 }
 
-/* Footer */
+/* ==========================================
+   FOOTER
+   ========================================== */
 .footer {
   background: #111827;
   color: white;
@@ -738,12 +1177,22 @@ body {
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 16px;
+  transition: color 0.3s ease;
+}
+
+.footer-grid h3:hover {
+  color: #ea580c;
 }
 
 .footer-grid h4 {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 12px;
+  transition: color 0.3s ease;
+}
+
+.footer-grid h4:hover {
+  color: #ea580c;
 }
 
 .footer-grid p,
@@ -756,11 +1205,13 @@ body {
 .footer-grid a {
   display: block;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
+  padding: 4px 0;
 }
 
 .footer-grid a:hover {
   color: #ea580c;
+  transform: translateX(5px);
 }
 
 .footer-bottom {
@@ -771,7 +1222,9 @@ body {
   font-size: 0.875rem;
 }
 
-/* Responsive Design */
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
@@ -783,6 +1236,19 @@ body {
     flex-direction: column;
     padding: 16px;
     border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .nav-links.active {
@@ -832,308 +1298,92 @@ body {
   .card {
     padding: 24px;
   }
-}
-/* À ajouter à la fin de votre CSS existant */
-
-/* Section Menu Découverte */
-.menu-decouverte {
-  background: linear-gradient(135deg, #fef3c7, #fed7aa);
-  border-radius: 16px;
-  padding: 48px;
-  margin-top: 64px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(234, 88, 12, 0.2);
-}
-
-.menu-decouverte .section-title {
-  color: #111;
-  margin-bottom: 16px;
-}
-
-.menu-decouverte-text {
-  color: #4b5563;
-  font-size: 1.125rem;
-  line-height: 1.8;
-  max-width: 800px;
-  margin: 0 auto 32px;
-}
-
-.menu-decouverte-price {
-  font-size: 1.25rem;
-  color: #111;
-  font-weight: 500;
-}
-
-.price-large {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #ea580c;
-  display: inline-block;
-  margin-right: 8px;
-}
-
-.price-note {
-  display: block;
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin-top: 8px;
-  font-style: italic;
-}
-
-/* Espacement entre les sections du menu */
-.menu-grid + .section-title {
-  margin-top: 64px;
-}
-
-/* Responsive pour Menu Découverte */
-@media (max-width: 768px) {
-  .menu-decouverte {
-    padding: 32px 24px;
-  }
-
-  .menu-decouverte-text {
-    font-size: 1rem;
-  }
 
   .price-large {
     font-size: 2rem;
   }
 }
-/* À AJOUTER à la fin de votre CSS */
+/* ====================================
+   OPTION 4 : COULEURS AFRICAINES VIBRANTES
+   ==================================== */
 
-/* Modal (Popup) */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.6);
-  animation: fadeIn 0.3s ease;
+/* Accueil - Terre d'Afrique */
+#page-accueil .section {
+  background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 50%, #f59e0b 100%);
 }
 
-.modal.active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+/* Menu - Rouge et orange chauds */
+#page-menu {
+  background: linear-gradient(to bottom, #fee2e2 0%, #fecaca 30%, #fca5a5 60%, #f87171 100%);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.modal-content {
-  background-color: white;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 600px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 32px;
-  border-bottom: 1px solid #e5e7eb;
-  background: linear-gradient(135deg, #fed7aa, #fbbf24);
-}
-
-.modal-header h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #111;
-  margin: 0;
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: #6b7280;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: all 0.3s;
-}
-
-.modal-close:hover {
-  background: rgba(0, 0, 0, 0.1);
-  color: #111;
-}
-
-.modal-content .form {
-  padding: 32px;
-}
-
-/* Style pour les boutons de candidature */
-.btn-apply {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-apply::after {
-  content: '→';
-  position: absolute;
-  right: 20px;
-  transition: transform 0.3s;
-}
-
-.btn-apply:hover::after {
-  transform: translateX(5px);
-}
-
-/* Responsive pour la modal */
-@media (max-width: 768px) {
-  .modal-content {
-    max-height: 95vh;
-    margin: 10px;
-  }
-
-  .modal-header {
-    padding: 16px 20px;
-  }
-
-  .modal-header h2 {
-    font-size: 1.25rem;
-  }
-
-  .modal-content .form {
-    padding: 20px;
-  }
-
-}
-
-
-/* ==== ANIMATION MENU & HOVER ==== */
-.nav-links .nav-link {
-  position: relative;
-  font-weight: 600;
-  padding: 10px 15px;
-  transition: color .3s ease;       /* Transition douce au survol */
-}
-
-/* Barre animée sous les liens */
-.nav-links .nav-link::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%) scaleX(0);
-  width: 70%;
-  height: 3px;
-  background: #ff4d00;
-  border-radius: 2px;
-  transition: transform .3s ease;
-}
-
-.nav-links .nav-link:hover::after,
-.nav-links .nav-link.active::after {
-  transform: translateX(-50%) scaleX(1); /* Animation underline */
-}
-
-.nav-links .nav-link:hover {
-  color: #ff4d00;
-}
-
-/* ==== ANIMATION OUVERTURE DU MENU MOBILE ==== */
-.mobile-menu-btn {
-  width: 35px;
-  height: 35px;
-  border: none;
+#page-menu .section {
   background: transparent;
-  cursor: pointer;
-  display: none;
 }
 
-.hamburger, 
-.hamburger::before, 
-.hamburger::after {
-  content: "";
-  background: #333;
-  height: 3px;
-  width: 30px;
-  border-radius: 3px;
-  display: block;
-  transition: .4s;
+/* Réservation - Vert savane */
+#page-reservation {
+  background: linear-gradient(135deg, #ecfccb 0%, #d9f99d 50%, #bef264 100%);
 }
 
-.hamburger::before {
-  margin-top: 6px;
+#page-reservation .section {
+  background: transparent;
 }
 
-.hamburger::after {
-  margin-top: 6px;
+/* Contact - Bleu océan */
+#page-contact {
+  background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 50%, #60a5fa 100%);
 }
 
-/* État animé menu ouvert (X) */
-.mobile-menu-btn.active .hamburger {
-  transform: rotate(45deg);
+#page-contact .section {
+  background: transparent;
 }
 
-.mobile-menu-btn.active .hamburger::before {
-  transform: rotate(90deg) translateX(6px);
+/* Carrière - Violet royal */
+#page-carriere {
+  background: linear-gradient(135deg, #ede9fe 0%, #c4b5fd 50%, #a78bfa 100%);
 }
 
-.mobile-menu-btn.active .hamburger::after {
-  opacity: 0;
+#page-carriere .section {
+  background: transparent;
 }
 
-/* AFFICHAGE MOBILE */
-@media(max-width: 850px) {
-  .mobile-menu-btn {
-    display: block;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: 80px;
-    right: 0;
-    width: 100%;
-    background: white;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    padding: 20px 0;
-    box-shadow: 0 8px 15px rgba(0,0,0,.15);
-    animation: fadeDown .5s ease forwards;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
+/* Motif wax africain en overlay */
+#page-accueil::before,
+#page-menu::before,
+#page-reservation::before,
+#page-contact::before,
+#page-carriere::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0, 0, 0, 0.03) 35px, rgba(0, 0, 0, 0.03) 70px),
+    repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(0, 0, 0, 0.03) 35px, rgba(0, 0, 0, 0.03) 70px);
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Animation apparition */
-@keyframes fadeDown {
-  0% { opacity: 0; transform: translateY(-20px); }
-  100% { opacity: 1; transform: translateY(0); }
+#page-accueil .section,
+#page-menu .container,
+#page-reservation .container,
+#page-contact .container,
+#page-carriere .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cartes avec ombres colorées */
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px rgba(234, 88, 12, 0.2);
+}
+
+.menu-item {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
 }
