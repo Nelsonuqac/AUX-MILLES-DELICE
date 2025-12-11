@@ -1,137 +1,142 @@
-// Navigation entre les pages
+/* ============================================================
+   SCRIPT PRINCIPAL — NAVIGATION, FORMULAIRES, ANIMATIONS
+   ============================================================ */
+
+/**
+ * Change la page affichée (SPA simulée)
+ * @param {string} pageName - Nom de la page à afficher
+ */
 function navigateToPage(pageName) {
   // Cacher toutes les pages
-  const pages = document.querySelectorAll('.page');
-  pages.forEach(page => {
+  document.querySelectorAll('.page').forEach(page => {
     page.classList.remove('active');
   });
 
   // Afficher la page sélectionnée
   const targetPage = document.getElementById(`page-${pageName}`);
-  if (targetPage) {
-    targetPage.classList.add('active');
-  }
+  if (targetPage) targetPage.classList.add('active');
 
-  // Mettre à jour les liens de navigation
-  const navLinks = document.querySelectorAll('.nav-link');
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('data-page') === pageName) {
-      link.classList.add('active');
-    }
+  // Mettre à jour l'état actif du menu
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.toggle('active', link.dataset.page === pageName);
   });
 
-  // Fermer le menu mobile si ouvert
-  const navLinksContainer = document.getElementById('navLinks');
-  navLinksContainer.classList.remove('active');
+  // Fermer le menu mobile au besoin
+  document.getElementById('navLinks').classList.remove('active');
 
-  // Scroller vers le haut
+  // Remonter en haut de la page
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Gestion du menu mobile
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const navLinks = document.getElementById('navLinks');
+/* ============================================================
+   INITIALISATION DU SITE APRÈS CHARGEMENT DU DOM
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
 
-  if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', function() {
-      navLinks.classList.toggle('active');
-    });
-  }
-
-  // Gestion des clics sur les liens de navigation
-  const allNavLinks = document.querySelectorAll('.nav-link');
-  allNavLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+  /* ---------------------------------------------
+     NAVIGATION — Liens de la barre + boutons
+  --------------------------------------------- */
+  document.querySelectorAll('[data-page]').forEach(element => {
+    element.addEventListener('click', (e) => {
+      // Empêche un rechargement inutile
       e.preventDefault();
-      const pageName = this.getAttribute('data-page');
-      navigateToPage(pageName);
+      navigateToPage(element.dataset.page);
     });
   });
 
-  // Gestion des boutons dans le contenu
-  const allButtons = document.querySelectorAll('[data-page]');
-  allButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      const pageName = this.getAttribute('data-page');
-      navigateToPage(pageName);
-    });
+  /* ---------------------------------------------
+     MENU BURGER (Mobile)
+  --------------------------------------------- */
+  const toggleBtn = document.getElementById('mobileMenuBtn');
+  const navContainer = document.getElementById('navLinks');
+
+  toggleBtn.addEventListener('click', () => {
+    navContainer.classList.toggle('active');
+    toggleBtn.classList.toggle('active');
   });
 
-  // Gestion des liens du footer
-  const footerLinks = document.querySelectorAll('.footer-grid a[data-page]');
-  footerLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const pageName = this.getAttribute('data-page');
-      navigateToPage(pageName);
-    });
-  });
-
-  // Formulaire de réservation
+  /* ---------------------------------------------
+     FORMULAIRE — Réservation
+  --------------------------------------------- */
   const reservationForm = document.getElementById('reservationForm');
   if (reservationForm) {
-    reservationForm.addEventListener('submit', function(e) {
+    reservationForm.addEventListener('submit', (e) => {
       e.preventDefault();
       alert('Réservation envoyée ! Nous vous confirmerons par email.');
-      this.reset();
+      reservationForm.reset();
     });
   }
 
-  // Formulaire de contact
+  /* ---------------------------------------------
+     FORMULAIRE — Contact
+  --------------------------------------------- */
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       alert('Message envoyé ! Nous vous répondrons dans les plus brefs délais.');
-      this.reset();
+      contactForm.reset();
     });
   }
 
-  // Animation au scroll (optionnel)
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver(function(entries) {
+  /* ---------------------------------------------
+     ANIMATIONS AU SCROLL (IntersectionObserver)
+  --------------------------------------------- */
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.style.opacity = '1';
         entry.target.style.transform = 'translateY(0)';
       }
     });
-  }, observerOptions);
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
 
-  // Observer les cartes pour l'animation
-  const cards = document.querySelectorAll('.card, .menu-item, .feature-card, .job-card');
-  cards.forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
+  // Appliquer observer aux éléments animés
+  document.querySelectorAll('.card, .menu-item, .feature-card, .job-card')
+    .forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+});
+/* ============================================================
+   MODALE DE CANDIDATURE - OUVERTURE, FERMETURE, ENVOI
+   ============================================================ */
+
+const modal = document.getElementById("jobModal");
+const closeModal = document.getElementById("closeModal");
+const jobTitleSpan = document.getElementById("jobTitle");
+const applicationForm = document.getElementById("jobApplicationForm");
+
+// OUVERTURE DE LA MODALE LORS DU CLIC SUR UN BOUTON "Postuler"
+document.querySelectorAll(".btn-apply").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const job = btn.dataset.job;
+    jobTitleSpan.textContent = job;
+    modal.classList.add("active");
   });
 });
 
-
-
-// Sélection des éléments
-const navLinks = document.querySelectorAll(".nav-link");
-const navContainer = document.getElementById("navLinks");
-const toggleBtn = document.getElementById("mobileMenuBtn");
-
-// === Animation click navigation (surlignage + changement de page) ===
-navLinks.forEach(link => {
-  link.addEventListener("click", () => {
-    navLinks.forEach(l => l.classList.remove("active"));
-    link.classList.add("active");
-  });
+// FERMETURE DE LA MODALE
+closeModal.addEventListener("click", () => {
+  modal.classList.remove("active");
 });
 
-// === Menu burger animé (mobile) ===
-toggleBtn.addEventListener("click", () => {
-  toggleBtn.classList.toggle("active");
-  navContainer.classList.toggle("show");
+// Fermer en cliquant à l’extérieur
+window.addEventListener("click", (e) => {
+  if (e.target === modal) modal.classList.remove("active");
+});
+
+// ENVOI DU FORMULAIRE
+applicationForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  alert("Votre candidature a bien été envoyée ! Nous vous répondrons sous peu.");
+
+  applicationForm.reset();
+  modal.classList.remove("active");
 });
